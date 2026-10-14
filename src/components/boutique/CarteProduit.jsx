@@ -11,10 +11,13 @@ import {
 export default function CarteProduit({ produit, onAjouterPanier }) {
   const [detailsOuverts, setDetailsOuverts] = useState(false);
 
-  const imageUrl = produit.photo
-    ? `${import.meta.env.VITE_BACKEND_URL}/storage/${produit.photo}`
+ const backendUrl = import.meta.env.VITE_BACKEND_URL || "https://admin.planetechsarlbenin.com";
+
+const imageUrl = produit.photo
+    ? `${backendUrl}/storage/${produit.photo}`
     : null;
 
+    
   const sousCategorie = produit.sous_categorie;
   const categorie = sousCategorie?.category;
 

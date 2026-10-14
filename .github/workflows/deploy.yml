@@ -19,13 +19,14 @@ jobs:
         with:
           node-version: '22'
 
-      # 3. Installe les dépendances et compile le projet React
+      # 3. Installe les dépendances et compile le projet React avec les bonnes variables d'environnement
       - name: Install dependencies and build
         run: |
           npm install
           npm run build
         env:
-          VITE_API_URL: https://admin.planetechsarlbenin.com/api
+          VITE_API_URL: https://admin.planetechsarlbenin.com
+          VITE_BACKEND_URL: https://admin.planetechsarlbenin.com
 
       # 4. Transfère le dossier "dist" directement sur votre VPS
       - name: Deploy to VPS via SSH
