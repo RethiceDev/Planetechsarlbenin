@@ -75,7 +75,7 @@ export default function Expertises() {
               hover:-translate-y-1
               hover:shadow-lg
             "
-          >
+           >
 
             {/* Image */}
             <div className="aspect-video w-full overflow-hidden bg-muted">
