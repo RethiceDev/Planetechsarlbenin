@@ -13,11 +13,18 @@ import Realisations from '@/pages/Realisations';
 import NotFound from '@/pages/NotFound';
 
 import { adminRoutes } from '@/admin/AdminRoutes';
+import useTracker from '@/hooks/useTracker';
+
+function Tracker() {
+  useTracker();
+  return null;
+}
 
 export default function App() {
   return (
     <>
       <ScrollToTop />
+      <Tracker />
 
       {/* Bouton WhatsApp flottant global */}
       <WhatsAppFlottant />
@@ -29,30 +36,15 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Accueil />} />
 
-          <Route
-            path="/a-propos"
-            element={<APropos />}
-          />
+          <Route path="/a-propos" element={<APropos />} />
 
-          <Route
-            path="/boutique"
-            element={<Boutique />}
-          />
+          <Route path="/boutique" element={<Boutique />} />
 
-          <Route
-            path="/contact"
-            element={<Contact />}
-          />
+          <Route path="/contact" element={<Contact />} />
 
-          <Route
-            path="/realisations"
-            element={<Realisations />}
-          />
+          <Route path="/realisations" element={<Realisations />} />
 
-          <Route
-            path="*"
-            element={<NotFound />}
-          />
+          <Route path="*" element={<NotFound />} />
         </Route>
 
         {/* ================================
