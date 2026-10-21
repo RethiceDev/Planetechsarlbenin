@@ -33,7 +33,7 @@ export const EXPERTISES = [
   },
   {
     slug: 'ftth',
-    titre: 'Branchement FTTH / FTTLA',
+    titre: 'FTTH | FTTLA | FAI | FTTC',
     resume: "Raccordement fibre optique jusqu'à l'abonné, du point de branchement à la prise.",
     prestations: ['Tirage et soudure fibre', 'Pose de PTO', 'Mesures et recette'],
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',

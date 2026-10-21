@@ -42,7 +42,7 @@ const EXPERTISES = [
 
   {
     id: 5,
-    titre: 'Branchement FTTH / FTTX',
+    titre: 'FTTH | FTTLA | FAI | FTTC',
     description:
       "PLANETECH intervient dans le déploiement des réseaux optiques et le raccordement des abonnés aux technologies FTTH, FTTB et FTTX. Nos équipes assurent également la maintenance des réseaux optiques afin de garantir la continuité et la qualité des installations.",
     visuel: fibreFtthImage,
