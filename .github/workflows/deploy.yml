@@ -19,16 +19,16 @@ jobs:
         with:
           node-version: '22'
 
-      # 3. Installe les dépendances et compile le projet React avec les bonnes variables d'environnement
+      # 3. Installe les dépendances et compile le projet React avec les variables du nouveau domaine
       - name: Install dependencies and build
         run: |
           npm install
           npm run build
         env:
-          VITE_API_URL: https://admin.planetechsarlbenin.com/api
-          VITE_BACKEND_URL: https://admin.planetechsarlbenin.com
+          VITE_API_URL: https://admin.planetechsarl.com/api
+          VITE_BACKEND_URL: https://admin.planetechsarl.com
 
-      # 4. Transfère le dossier "dist" directement sur votre VPS
+      # 4. Transfère le dossier "dist" directement sur votre VPS au bon emplacement
       - name: Deploy to VPS via SSH
         uses: appleboy/scp-action@master
         with:
@@ -36,5 +36,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "dist/"
-          target: "/var/www/planetechsarlbenin.com/html"
+          target: "/var/www/planetechsarl.com/html"
           strip_components: 1
