@@ -35,12 +35,13 @@ export default function EnTete() {
         ====================================================== */}
         <div
           className="
-            container
             flex
+            w-full
             min-h-[88px]
             items-center
             gap-3
             xl:gap-4
+            px-3
             py-2
             lg:min-h-[96px]
           "
@@ -49,7 +50,7 @@ export default function EnTete() {
           {/* ===================================================
               LOGO
           ==================================================== */}
-          <div className="shrink-0 lg:mr-4 xl:mr-6 2xl:mr-10">
+          <div className="shrink-0">
             <NavLink
               to="/"
               onClick={fermer}
@@ -170,7 +171,6 @@ export default function EnTete() {
               shrink-0
               items-center
               gap-3
-              lg:ml-4
               lg:flex
             "
           >
@@ -207,7 +207,7 @@ export default function EnTete() {
               >
                 <path d="M11 2L4 11h5l-1 7 7-9h-5l1-7z" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              Commande rapide
+              Faire une demande de commande
             </button>
 
             <Bouton
@@ -282,9 +282,10 @@ export default function EnTete() {
           >
             <nav
               className="
-                container
                 flex
+                w-full
                 flex-col
+                px-3
                 py-3
               "
               aria-label="Navigation mobile"
@@ -341,7 +342,7 @@ export default function EnTete() {
                 >
                   <path d="M11 2L4 11h5l-1 7 7-9h-5l1-7z" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                Commande rapide
+                Faire une demande de commande
               </button>
 
               {/* DEMANDER UN DEVIS */}
