@@ -11,8 +11,13 @@ import {
 export default function CarteProduit({ produit, onAjouterPanier }) {
   const [detailsOuverts, setDetailsOuverts] = useState(false);
 
-  const imageUrl = produit.photo
-    ? `${import.meta.env.VITE_BACKEND_URL}/storage/${produit.photo}`
+  // Correction : Nettoie les éventuels préfixes "storage/" ou "/" en trop pour éviter les doublons
+  const cleanPhotoPath = produit.photo
+    ? produit.photo.replace(/^\/?(storage\/)+/, '')
+    : null;
+
+  const imageUrl = cleanPhotoPath
+    ? `${import.meta.env.VITE_BACKEND_URL}/storage/${cleanPhotoPath}`
     : null;
 
   const sousCategorie = produit.sous_categorie;
@@ -67,7 +72,7 @@ export default function CarteProduit({ produit, onAjouterPanier }) {
 
   return (
     <>
-      <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-emerald-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-emerald-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
         {/* Visuel du produit */}
         <div className="relative h-52 w-full overflow-hidden bg-emerald-50">
           {imageUrl ? (
@@ -77,11 +82,9 @@ export default function CarteProduit({ produit, onAjouterPanier }) {
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               onError={(event) => {
+                console.warn("Erreur de chargement pour l'image :", imageUrl);
                 event.currentTarget.style.display = 'none';
-                const fallback =
-                  event.currentTarget.parentElement?.querySelector(
-                    '[data-photo-fallback]'
-                  );
+                const fallback = event.currentTarget.parentElement?.querySelector('[data-photo-fallback]');
                 fallback?.classList.remove('hidden');
               }}
             />
@@ -99,14 +102,14 @@ export default function CarteProduit({ produit, onAjouterPanier }) {
           {/* Logo PLANETECH dans le coin supérieur gauche */}
           <LogoPlanetech />
 
-          {/* Catégorie placée en bas à gauche pour ne pas masquer le logo */}
+          {/* Catégorie placée en bas à gauche */}
           {categorie?.nom && (
             <span className="absolute bottom-3 left-3 z-10 rounded-full border border-white/70 bg-white/95 px-3 py-1.5 text-xs font-semibold text-emerald-800 shadow-sm backdrop-blur">
               {categorie.nom}
             </span>
           )}
 
-          {/* Bouton de fiche technique : mobile toujours visible, ordinateur au survol */}
+          {/* Bouton de fiche technique */}
           <button
             type="button"
             onClick={() => setDetailsOuverts(true)}
@@ -119,19 +122,6 @@ export default function CarteProduit({ produit, onAjouterPanier }) {
               Voir la fiche technique
             </span>
           </button>
-
-          {/* Aperçu au survol sur ordinateur */}
-          <div className="pointer-events-none absolute inset-0 z-[5] hidden flex-col justify-end bg-gradient-to-t from-emerald-950/95 via-emerald-950/65 to-transparent p-5 text-white opacity-0 transition-opacity duration-300 md:flex md:group-hover:opacity-100">
-            <p className="mb-2 text-xs font-bold uppercase tracking-wider text-emerald-100">
-              Fiche technique
-            </p>
-            <h3 className="line-clamp-2 text-lg font-bold">
-              {produit.name}
-            </h3>
-            <span className="mt-3 text-xs font-semibold text-white">
-              Ouvrez la fiche pour consulter les détails complets
-            </span>
-          </div>
         </div>
 
         {/* Informations principales */}
